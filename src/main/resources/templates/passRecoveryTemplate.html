@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        table td {
+            padding: 5px;
+            width: 50%;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+    <tr>
+        <td align="center" bgcolor="white" colspan="2" style="">
+            <img alt="java"
+                 src="https://i.ibb.co/zJczS6m/java.png" style="display: block;"/>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: right">
+            <p>Your new password:</p>
+        </td>
+        <td style=" ">
+            <p><b th:text="${password}">test</b></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2" style="">
+            <p>Remember password and delete this email for security purposes</p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2">
+            <p>Instakek Inc.</p>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
