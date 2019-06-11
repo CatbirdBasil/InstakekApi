@@ -139,6 +139,41 @@ public interface Constants {
         String TEMPLATENAME_PASSWORD_RECOVERY_EMAIL = "passRecoveryTemplate";
     }
 
+    interface CommentColumns{
+        String POST_ID = "post_id";
+        String USER_ID = "user_id";
+        String COMMENT_TEXT = "comment_text";
+        String COMMENT_TIME = "comment_time";
+    }
+
+    interface ChanellColumns{
+        String CREATOR_ID = "creator_id";
+        String CHANELL_TYPE_ID = "chanell_type_id";
+        String CHANELL_NAME = "chanell_name";
+        String CREATION_DATE = "creation_date";
+        String IMG_SRC = "img_src";
+    }
+
+    interface SubscriptionColumns{
+        String USER_ID = "user_id";
+        String CHANELL_ID = "chanell_id";
+        String IS_ACTIVE = "is_active";
+    }
+
+    interface AdministrationColumns{
+        String USER_ID = "user_id";
+        String CHANELL_ID = "chanell_id";
+        String ROLE_ID = "role_id";
+    }
+
+    interface PostColumns{
+        String CHANELL_ID = "chanell_id";
+        String CREATION_DATE = "creation_date";
+        String BASE_POST_ID = "base_post_id";
+    }
+
+
+
     interface PasswordCharacters {
         String ALL_PASSWORD_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?";
     }
