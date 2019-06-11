@@ -1,16 +1,8 @@
-2019-05-13 00:09:16.364  WARN 1544 --- [pool-1-thread-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@14facde5 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
-2019-05-13 00:09:21.696  WARN 1544 --- [pool-1-thread-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7cee2397 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
-2019-05-13 00:09:27.046  WARN 1544 --- [pool-1-thread-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@98a41c6 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
-2019-05-13 00:10:05.007  WARN 1544 --- [pool-1-thread-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5fe71a42 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
-2019-05-13 00:10:10.023  WARN 1544 --- [pool-1-thread-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5fe437ba (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
-2019-05-13 00:10:15.036  WARN 1544 --- [pool-1-thread-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@15d2b674 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
-2019-05-13 00:10:20.043  WARN 1544 --- [pool-1-thread-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@28ae24e7 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
-2019-05-13 00:14:05.130  WARN 1544 --- [pool-1-thread-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1dc2d5dd (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
-2019-05-13 00:16:06.187  WARN 1544 --- [pool-1-thread-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@404ce843 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
-2019-05-13 09:23:18.905  WARN 1544 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8h5m18s572ms726µs907ns).
-2019-05-13 09:24:18.687 ERROR 1544 --- [pool-1-thread-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
+2019-06-11 07:49:23.162  WARN 19064 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1d11h41m20s435ms255µs176ns).
+2019-06-11 10:45:01.550  WARN 19064 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h36m4s404ms131µs821ns).
+2019-06-11 10:46:04.647 ERROR 19064 --- [pool-1-thread-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
 
-org.springframework.transaction.CannotCreateTransactionException: Could not open JDBC Connection for transaction; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30041ms.
+org.springframework.transaction.CannotCreateTransactionException: Could not open JDBC Connection for transaction; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30044ms.
 	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:305) ~[spring-jdbc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
 	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:378) ~[spring-tx-5.1.4.RELEASE.jar:5.1.4.RELEASE]
 	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:137) ~[spring-tx-5.1.4.RELEASE.jar:5.1.4.RELEASE]
@@ -24,7 +16,7 @@ org.springframework.transaction.CannotCreateTransactionException: Could not open
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167) [na:na]
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641) [na:na]
 	at java.base/java.lang.Thread.run(Thread.java:844) [na:na]
-Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30041ms.
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30044ms.
 	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:676) ~[HikariCP-3.2.0.jar:na]
 	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:190) ~[HikariCP-3.2.0.jar:na]
 	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:155) ~[HikariCP-3.2.0.jar:na]

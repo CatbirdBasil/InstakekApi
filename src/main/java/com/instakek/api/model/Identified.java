@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Identified {
+public abstract class Identified {
 
     protected long id;
 }

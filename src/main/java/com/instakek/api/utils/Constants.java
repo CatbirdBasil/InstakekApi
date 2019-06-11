@@ -70,6 +70,67 @@ public interface Constants {
         String IS_ACTIVE = "is_active";
     }
 
+    interface ChatMessageColumns {
+
+        String CHAT_MESSAGE_ID = "id";
+        String SENDER_ID = "sender_id";
+        String RECIEVER_ID = "reciever_id";
+        String MESSAGE_TEXT = "message_text";
+        String MESSAGE_TIME = "message_time";
+    }
+
+    interface TagColumns {
+
+        String TAG_ID = "id";
+        String TAG_TEXT = "tag_text";
+    }
+
+    interface ChannelColumns {
+
+        String CHANNEL_ID = "id";
+        String CREATOR_ID = "creator_id";
+        String CHANNEL_TYPE_ID = "channel_type_id";
+        String CHANNEL_NAME = "channel_name";
+        String CREATION_DATE = "creation_date";
+        String IMG_SRC = "img_src";
+    }
+
+    interface AdministrationColumns {
+
+        String ADMINISTRATION_ID = "id";
+        String CHANNEL_ID = "channel_id";
+        String USER_ID = "user_id";
+        String ROLE_ID = "role_id";
+    }
+
+    interface AdministrationRoleColumns {
+
+        String ADMINISTRATION_ROLE_ID = "id";
+        String ROLE_NAME = "role_name";
+    }
+
+    interface SubscriptionColumns {
+
+        String CHANNEL_ID = "channel_id";
+        String USER_ID = "user_id";
+        String IS_ACTIVE = "is_active";
+    }
+
+    interface PostColumns {
+
+        String POST_ID = "post_id";
+        String CHANNEL_ID = "channel_id";
+        String CREATION_TIME = "creation_time";
+        String BASE_POST_ID = "base_post_id";
+    }
+
+    interface PostContentColumns {
+
+        String POST_CONTENT_ID = "id";
+        String POST_ID = "post_id";
+        String CONTENT_LINK = "content_link";
+    }
+
     interface EmailNotificationConstants {
         String REG_CONFIRM_TITLE = "Registration Confirmation";
         String PASS_RECOVERY_TITLE = "Password recovery";

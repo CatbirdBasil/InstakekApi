@@ -11,16 +11,17 @@ public class ChatMessage extends Identified {
 
     private long senderId;
     private long receiverId;
-    private String text;
+    //changed from 'text' to 'messageText'
+    private String messageText;
     private Timestamp messageTime;
 
     private User sender;
     private User receiver;
 
-    public ChatMessage(long senderId, long receiverId, String text, Timestamp messageTime) {
+    public ChatMessage(long senderId, long receiverId, String messageText, Timestamp messageTime) {
         this.senderId = senderId;
         this.receiverId = receiverId;
-        this.text = text;
+        this.messageText = messageText;
         this.messageTime = messageTime;
     }
 }

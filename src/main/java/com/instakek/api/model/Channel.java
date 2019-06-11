@@ -13,7 +13,7 @@ public class Channel extends Identified {
 
     private long creatorId;
     private long channelTypeId;
-    private String name;
+    private String channelName;
     private Timestamp creationDate;
     private String imageSrc;
 
@@ -23,10 +23,10 @@ public class Channel extends Identified {
     private List<Post> posts;
     private List<Administration> administrationList;
 
-    public Channel(Long creatorId, Long channelTypeId, String name, Timestamp creationDate, String imageSrc) {
+    public Channel(Long creatorId, Long channelTypeId, String channelName, Timestamp creationDate, String imageSrc) {
         this.creatorId = creatorId;
         this.channelTypeId = channelTypeId;
-        this.name = name;
+        this.channelName = channelName;
         this.creationDate = creationDate;
         this.imageSrc = imageSrc;
     }

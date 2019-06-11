@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Tag extends Identified {
 
-    private String text;
+    //changed from 'text' to 'tagText'
+    private String tagText;
 }
