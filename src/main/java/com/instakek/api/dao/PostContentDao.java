@@ -2,7 +2,9 @@ package com.instakek.api.dao;
 
 import com.instakek.api.model.PostContent;
 
+import java.util.List;
+
 public interface PostContentDao extends GenericDao<PostContent> {
 
-    // TODO: 27.05.2019 Specific methods
+    List<PostContent> getPostsContents(Long postId);
 }

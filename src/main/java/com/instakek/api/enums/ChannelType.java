@@ -5,9 +5,10 @@ import lombok.Getter;
 @Getter
 public enum ChannelType {
 
-    USER(1, "User"),
-    PUBLIC(2, "Public"),
-    PRIVATE(3, "Private");
+    USER_PUBLIC(1, "User Public"),
+    USER_PRIVATE(2, "User Private"),
+    PUBLIC(3, "Public"),
+    PRIVATE(4, "Private");
 
     private final long id;
     private final String typeName;

@@ -18,6 +18,7 @@ public class ChannelMapper implements RowMapper<Channel> {
         channel.setCreatorId(resultSet.getLong(ChannelColumns.CREATOR_ID));
         channel.setChannelTypeId(resultSet.getLong(ChannelColumns.CHANNEL_TYPE_ID));
         channel.setChannelName(resultSet.getString(ChannelColumns.CHANNEL_NAME));
+        channel.setDescription(resultSet.getString(ChannelColumns.DESCRIPTION));
         channel.setCreationDate(resultSet.getTimestamp(ChannelColumns.CREATION_DATE));
         channel.setImageSrc(resultSet.getString(ChannelColumns.IMG_SRC));
 

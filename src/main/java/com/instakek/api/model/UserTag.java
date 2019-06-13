@@ -20,5 +20,13 @@ public class UserTag {
         this.userId = userId;
         this.tagId = tagId;
         this.tagTypeId = tagTypeId;
+        this.type = UserTagType.valueOf(UserTagType.getNameFromId(tagTypeId));
+    }
+
+    public UserTag(long userId, long tagId, UserTagType type) {
+        this.userId = userId;
+        this.tagId = tagId;
+        this.type = type;
+        this.tagTypeId = type.getId();
     }
 }

@@ -25,14 +25,18 @@ import java.util.Optional;
 @Slf4j
 public abstract class GenericDaoImpl<T extends Identified> implements GenericDao<T> {
 
+    private String tableName;
     protected final RowMapper<T> rowMapper;
+
     @Autowired
     protected JdbcTemplate jdbcTemplate;
-    private String tableName;
+
     @Value("${db.query.generic.getAll}")
     private String sqlGetAll;
+
     @Value("${db.query.generic.getById}")
     private String sqlGetUserById;
+
     @Value("${db.query.generic.deleteById}")
     private String sqlDeleteById;
 

@@ -14,7 +14,7 @@ public class PostContentMapper implements RowMapper<PostContent> {
     public PostContent mapRow(ResultSet resultSet, int i) throws SQLException {
         PostContent postContent = new PostContent();
 
-        postContent.setId(resultSet.getLong(PostContentColumns.POST_ID));
+        postContent.setId(resultSet.getLong(PostContentColumns.POST_CONTENT_ID));
         postContent.setPostId(resultSet.getLong(PostContentColumns.POST_ID));
         postContent.setContentLink(resultSet.getString(PostContentColumns.CONTENT_LINK));
 

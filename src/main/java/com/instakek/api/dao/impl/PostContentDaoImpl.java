@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import static com.instakek.api.utils.Constants.TableName;
 
@@ -21,6 +22,9 @@ public class PostContentDaoImpl extends GenericDaoImpl<PostContent> implements P
 
     @Value("${db.query.postContent.update}")
     private String sqlPostContentUpdate;
+
+    @Value("${db.query.postContent.getPostsContents}")
+    private String sqlGetPostsContents;
 
     public PostContentDaoImpl() {
         super(new PostContentMapper(), TableName.POST_CONTENT);
@@ -49,5 +53,10 @@ public class PostContentDaoImpl extends GenericDaoImpl<PostContent> implements P
     @Override
     protected Object[] getArgsForUpdate(PostContent entity) {
         return new Object[]{entity.getPostId(), entity.getContentLink()};
+    }
+
+    @Override
+    public List<PostContent> getPostsContents(Long postId) {
+        return jdbcTemplate.query(sqlGetPostsContents, new Object[]{postId}, rowMapper);
     }
 }

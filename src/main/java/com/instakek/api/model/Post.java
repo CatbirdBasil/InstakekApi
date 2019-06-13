@@ -11,9 +11,7 @@ import java.util.List;
 public class Post extends Identified {
 
     private long channelId;
-    /* TODO: No such field in DB */
     private String text;
-    /* ------------------------- */
     private Timestamp creationDate;
     private Long basePostId;
 
@@ -25,8 +23,9 @@ public class Post extends Identified {
     private List<Tag> tags;
     private List<Comment> comments;
 
-    public Post(long channelId, Timestamp creationDate, Long basePostId) {
+    public Post(long channelId, String text, Timestamp creationDate, Long basePostId) {
         this.channelId = channelId;
+        this.text = text;
         this.creationDate = creationDate;
         this.basePostId = basePostId;
     }

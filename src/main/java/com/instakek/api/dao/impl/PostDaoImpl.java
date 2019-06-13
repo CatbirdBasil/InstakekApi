@@ -36,6 +36,7 @@ public class PostDaoImpl extends GenericDaoImpl<Post> implements PostDao {
 
         int argNum = 1;
         statement.setLong(argNum++, entity.getChannelId());
+        statement.setString(argNum++, entity.getText());
         statement.setTimestamp(argNum++, entity.getCreationDate());
         statement.setLong(argNum++, entity.getBasePostId());
 
@@ -49,6 +50,6 @@ public class PostDaoImpl extends GenericDaoImpl<Post> implements PostDao {
 
     @Override
     protected Object[] getArgsForUpdate(Post entity) {
-        return new Object[]{entity.getChannelId(), entity.getCreationDate(), entity.getBasePostId()};
+        return new Object[]{entity.getChannelId(), entity.getText(), entity.getCreationDate(), entity.getBasePostId()};
     }
 }

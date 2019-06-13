@@ -28,6 +28,7 @@ import static com.instakek.api.utils.Constants.ResponseEntities;
 @Slf4j
 public class AuthService {
 
+    private ChannelService channelService;
     private UserService userService;
     private EmailService emailService;
     private AuthenticationManager authenticationManager;
@@ -35,8 +36,8 @@ public class AuthService {
     private JwtTokenProvider tokenProvider;
 
     @Autowired
-    public AuthService(UserService userService, EmailService emailService,
-                       AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder, JwtTokenProvider tokenProvider) {
+    public AuthService(ChannelService channelService, UserService userService, EmailService emailService, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder, JwtTokenProvider tokenProvider) {
+        this.channelService = channelService;
         this.userService = userService;
         this.emailService = emailService;
         this.authenticationManager = authenticationManager;
@@ -63,7 +64,9 @@ public class AuthService {
                 Timestamp.from(Instant.now()), true);
 
 
-        userService.createUser(user);
+        User createdUser = userService.createUser(user);
+
+        channelService.createUserBaseChannel(createdUser);
 
         return ResponseEntities.USER_REGISTERED_SUCCESSFULLY;
     }

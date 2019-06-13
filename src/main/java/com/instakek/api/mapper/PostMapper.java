@@ -15,6 +15,7 @@ public class PostMapper implements RowMapper<Post> {
         Post post = new Post();
 
         post.setId(resultSet.getLong(PostColumns.POST_ID));
+        post.setText(resultSet.getString(PostColumns.TEXT));
         post.setChannelId(resultSet.getLong(PostColumns.CHANNEL_ID));
         post.setCreationDate(resultSet.getTimestamp(PostColumns.CREATION_TIME));
         post.setBasePostId(resultSet.getLong(PostColumns.BASE_POST_ID));
