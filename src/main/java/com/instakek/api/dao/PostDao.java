@@ -2,7 +2,11 @@ package com.instakek.api.dao;
 
 import com.instakek.api.model.Post;
 
+import java.util.List;
+
 public interface PostDao extends GenericDao<Post> {
 
-    // TODO: 27.05.2019 Specific methods
+    List<Post> getPostsFromSubscribedChannels(long userId);
+
+    List<Post> getPostsFromSubscribedTags(long userId);
 }

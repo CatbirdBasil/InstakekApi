@@ -127,9 +127,9 @@ public class ChannelService extends CrudService<Channel> {
 
     //TODONE 1) Subscribe and unsubcribe functions
     //TODONE 2) Get channel with subscribers and subscriptions and posts
-    //TODO 3) Correct create post
+    //TODONE ) Correct create post
     //TODO 4) Place tag on post (oncreate and onupdate)
-    //TODO 5) Subscribe to a nd block tags
-    //TODO 6) Get subscribed posts
-    //TODO 7) Search for channel containing name
+    //TODO 5) Subscribe to and block tags
+    //TODON 6) Get subscribed posts
+    //TODON 7) Search for channel containing name
 }

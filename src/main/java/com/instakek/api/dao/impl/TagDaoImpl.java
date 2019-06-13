@@ -22,6 +22,12 @@ public class TagDaoImpl extends GenericDaoImpl<Tag> implements TagDao {
     @Value("${db.query.tag.update}")
     private String sqlTagUpdate;
 
+    @Value("${db.query.tag.insertUserTag}")
+    private String sqlInsertUserTag;
+
+    @Value("${db.query.tag.insertTagForPost}")
+    private String sqlInsertPostTag;
+
     public TagDaoImpl() {
         super(new TagMapper(), TableName.TAG);
     }
@@ -49,4 +55,18 @@ public class TagDaoImpl extends GenericDaoImpl<Tag> implements TagDao {
     protected Object[] getArgsForUpdate(Tag entity) {
         return new Object[]{entity.getTagText()};
     }
+
+    //TODO проверить инсерт
+    @Override
+    public void insertUserTag(Long userId, Long tagId, Long tad_type) {
+        // jdbcTemplate.query(sqlInsertUserTag, new Object[]{userId, tagId,tad_type},rowMapper);
+        jdbcTemplate.update(sqlInsertUserTag, userId, tagId, tad_type);
+    }
+
+    //TODO this
+    public void insertPostTag(Tag entity) {
+
+        //jdbcTemplate.update(sqlInsertUserTag, , tagId,tad_type);
+    }
+
 }

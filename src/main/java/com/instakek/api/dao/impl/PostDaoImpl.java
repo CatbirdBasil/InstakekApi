@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import static com.instakek.api.utils.Constants.TableName;
 
@@ -21,6 +22,12 @@ public class PostDaoImpl extends GenericDaoImpl<Post> implements PostDao {
 
     @Value("${db.query.post.update}")
     private String sqlPostUpdate;
+
+    @Value("${db.query.post.getPostsFromSubscribedChannels}")
+    private String sqlGetPostsFromSubscribedChannels;
+
+    @Value("${db.query.post.getPostsFromSubscribedTags}")
+    private String sqlGetPostsFromSubscribedTags;
 
     public PostDaoImpl() {
         super(new PostMapper(), TableName.POST);
@@ -51,5 +58,15 @@ public class PostDaoImpl extends GenericDaoImpl<Post> implements PostDao {
     @Override
     protected Object[] getArgsForUpdate(Post entity) {
         return new Object[]{entity.getChannelId(), entity.getText(), entity.getCreationDate(), entity.getBasePostId()};
+    }
+
+    @Override
+    public List<Post> getPostsFromSubscribedChannels(long userId) {
+        return jdbcTemplate.query(sqlGetPostsFromSubscribedChannels, new Object[]{userId}, rowMapper);
+    }
+
+    @Override
+    public List<Post> getPostsFromSubscribedTags(long userId) {
+        return jdbcTemplate.query(sqlGetPostsFromSubscribedTags, new Object[]{userId}, rowMapper);
     }
 }

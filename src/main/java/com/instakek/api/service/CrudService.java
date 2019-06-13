@@ -20,7 +20,7 @@ public abstract class CrudService<T extends Identified> {
         this.entityName = entityName;
     }
 
-    public T getById(Long id) {
+    public T getById(long id) {
         log.debug("Getting {}", entityName);
 
         return dao.getById(id)
