@@ -1,5 +1,6 @@
 package com.instakek.api.service;
 
+import com.instakek.api.dao.CommentDao;
 import com.instakek.api.dao.PostContentDao;
 import com.instakek.api.dao.PostDao;
 import com.instakek.api.model.Post;
@@ -19,12 +20,14 @@ public class PostService extends CrudService<Post> {
 
     private PostDao postDao;
     private PostContentDao postContentDao;
+    private CommentDao commentDao;
 
     @Autowired
-    public PostService(PostDao postDao, PostContentDao postContentDao) {
+    public PostService(PostDao postDao, PostContentDao postContentDao, CommentDao commentDao) {
         super(postDao, "Post");
         this.postDao = postDao;
         this.postContentDao = postContentDao;
+        this.commentDao = commentDao;
     }
 
     public Post getPostWithContents(long postId) {
@@ -35,7 +38,7 @@ public class PostService extends CrudService<Post> {
 
     public Post getPostWithComments(long postId) {
         Post post = super.getById(postId);
-        post.setComments();
+        post.setComments(commentDao.getPostComments(postId));
         return post;
     }
 
@@ -43,7 +46,7 @@ public class PostService extends CrudService<Post> {
         List<Post> posts = postDao.getPostsFromSubscribedChannels(userId);
         posts.addAll(postDao.getPostsFromSubscribedTags(userId));
 
-        posts.sort((Post post1, Post post2) -> post2.getCreationDate().compareTo(post1.getCreationDate()));
+        posts.sort((Post firstPosr, Post secondPost) -> secondPost.getCreationDate().compareTo(firstPosr.getCreationDate()));
 
         for (int i = 0; i < posts.size(); i++) {
             posts.get(i).setContents(postContentDao.getPostsContents(posts.get(i).getId()));

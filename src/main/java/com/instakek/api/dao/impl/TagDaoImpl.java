@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Optional;
 
 import static com.instakek.api.utils.Constants.TableName;
 
@@ -25,8 +26,20 @@ public class TagDaoImpl extends GenericDaoImpl<Tag> implements TagDao {
     @Value("${db.query.tag.insertUserTag}")
     private String sqlInsertUserTag;
 
+    @Value("${db.query.tag.removeUserTag}")
+    private String sqlRemoveUserTag;
+
     @Value("${db.query.tag.insertTagForPost}")
     private String sqlInsertPostTag;
+
+    @Value("${db.query.tag.removePostTag}")
+    private String sqlRemovePostTag;
+
+    @Value("${db.query.tag.removePostTagCompletely}")
+    private String sqlRemovePostTagCompletely;
+
+    @Value("${db.query.tag.getTagByName}")
+    private String sqlGetTagByName;
 
     public TagDaoImpl() {
         super(new TagMapper(), TableName.TAG);
@@ -58,15 +71,34 @@ public class TagDaoImpl extends GenericDaoImpl<Tag> implements TagDao {
 
     //TODO проверить инсерт
     @Override
-    public void insertUserTag(Long userId, Long tagId, Long tad_type) {
+    public void insertUserTag(long userId, long tagId, long tadType) {
         // jdbcTemplate.query(sqlInsertUserTag, new Object[]{userId, tagId,tad_type},rowMapper);
-        jdbcTemplate.update(sqlInsertUserTag, userId, tagId, tad_type);
+        jdbcTemplate.update(sqlInsertUserTag, userId, tagId, tadType);
     }
 
-    //TODO this
-    public void insertPostTag(Tag entity) {
+    @Override
+    public void removeUserTag(long tagId, long userId) {
+        jdbcTemplate.update(sqlRemoveUserTag, tagId, userId);
+    }
 
-        //jdbcTemplate.update(sqlInsertUserTag, , tagId,tad_type);
+    @Override
+    public void insertPostTag(long postId, long tagId, long userId) {
+        jdbcTemplate.update(sqlInsertPostTag, postId, tagId, userId);
+    }
+
+    @Override
+    public void removePostTag(long postId, long tagId, long userId) {
+        jdbcTemplate.update(sqlRemovePostTag, postId, tagId, userId);
+    }
+
+    @Override
+    public void removePostTagCompletely(long postId, long tagId) {
+        jdbcTemplate.update(sqlRemovePostTagCompletely, postId, tagId);
+    }
+
+    @Override
+    public Optional<Tag> getTagByText(String text) {
+        return getSingleElement(jdbcTemplate.query(sqlGetTagByName, new Object[]{text}, rowMapper));
     }
 
 }

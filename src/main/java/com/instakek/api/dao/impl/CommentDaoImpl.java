@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 public class CommentDaoImpl extends GenericDaoImpl<Comment> implements CommentDao {
 
@@ -17,6 +18,9 @@ public class CommentDaoImpl extends GenericDaoImpl<Comment> implements CommentDa
 
     @Value("${db.query.comment.update}")
     private String sqlTagUpdate;
+
+    @Value("${db.query.comment.getPostComments}")
+    private String sqlPostComments;
 
     public CommentDaoImpl() {
         super(new CommentMapper(), Constants.TableName.COMMENT);
@@ -60,5 +64,12 @@ public class CommentDaoImpl extends GenericDaoImpl<Comment> implements CommentDa
     @Override
     protected Object[] getArgsForUpdate(Comment entity) {
         return new Object[]{entity.getPostId(), entity.getUserId(), entity.getText(), entity.getCommentTime()};
+    }
+
+
+    // TODO REDO TO GET USER TOO
+    @Override
+    public List<Comment> getPostComments(long postId) {
+        return jdbcTemplate.query(sqlPostComments, new Object[]{postId}, rowMapper); // + another mapper
     }
 }

@@ -76,9 +76,7 @@ public class ChannelDaoImpl extends GenericDaoImpl<Channel> implements ChannelDa
         } else {
             statement.setLong(argNum++, channelTypeId);
         }
-//
-//        statement.setLong(argNum++, entity.getChannelTypeId());
-//
+
         statement.setString(argNum++, entity.getChannelName());
         statement.setString(argNum++, entity.getDescription());
         statement.setTimestamp(argNum++, entity.getCreationDate());

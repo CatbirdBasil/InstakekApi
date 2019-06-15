@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class PostContentService extends CrudService<PostContent> {
 
-    PostContentDao postContentDao;
+    private PostContentDao postContentDao;
 
     @Autowired
     public PostContentService(PostContentDao postContentDao) {

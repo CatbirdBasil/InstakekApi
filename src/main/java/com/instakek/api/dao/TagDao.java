@@ -2,10 +2,19 @@ package com.instakek.api.dao;
 
 import com.instakek.api.model.Tag;
 
+import java.util.Optional;
+
 public interface TagDao extends GenericDao<Tag> {
 
-    void insertUserTag(Long userId, Long tagId, Long tag_type);
+    void insertUserTag(long userId, long tagId, long tagType);
 
+    void removeUserTag(long tagId, long userId);
 
-    // TODO: 27.05.2019 Specific methods
+    void insertPostTag(long postId, long tagId, long userId);
+
+    void removePostTag(long postId, long tagId, long userId);
+
+    void removePostTagCompletely(long postId, long tagId);
+
+    Optional<Tag> getTagByText(String text);
 }
