@@ -4,13 +4,17 @@ import com.instakek.api.dao.CommentDao;
 import com.instakek.api.mapper.CommentMapper;
 import com.instakek.api.model.Comment;
 import com.instakek.api.utils.Constants;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
+@Repository
+@Slf4j
 public class CommentDaoImpl extends GenericDaoImpl<Comment> implements CommentDao {
 
     @Value("${db.query.comment.insert}")
