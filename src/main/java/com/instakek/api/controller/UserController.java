@@ -1,6 +1,5 @@
 package com.instakek.api.controller;
 
-import com.instakek.api.model.User;
 import com.instakek.api.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -11,11 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
@@ -33,7 +27,7 @@ public class UserController {
     public ResponseEntity<?> getAllUsers() {
         log.debug("Requesting all users");
 
-        List<User> users = new ArrayList<>();
+        /*List<User> users = new ArrayList<>();
 
         User keke = new User("k@k.com", "keke", "passkek",
                 "Bobby", "Marley", Timestamp.from(Instant.now()), true);
@@ -41,8 +35,8 @@ public class UserController {
                 "Lobby", "Brachovski", Timestamp.from(Instant.now()), true);
 
         users.add(keke);
-        users.add(lole);
+        users.add(lole);*/
 
-        return ResponseEntity.ok(users);
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 }

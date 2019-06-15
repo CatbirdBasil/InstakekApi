@@ -96,6 +96,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers(HttpMethod.GET, "/api/auth/**")
                 .permitAll()
+                .antMatchers(HttpMethod.GET, "/api/user/**") //TODO DELETE!!!
+                .permitAll()
                 .antMatchers(HttpMethod.GET, "/socket/**")
                 .permitAll()
                 .anyRequest()
