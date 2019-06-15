@@ -27,16 +27,6 @@ public class UserController {
     public ResponseEntity<?> getAllUsers() {
         log.debug("Requesting all users");
 
-        /*List<User> users = new ArrayList<>();
-
-        User keke = new User("k@k.com", "keke", "passkek",
-                "Bobby", "Marley", Timestamp.from(Instant.now()), true);
-        User lole = new User("l@k.com", "lole", "passlol",
-                "Lobby", "Brachovski", Timestamp.from(Instant.now()), true);
-
-        users.add(keke);
-        users.add(lole);*/
-
         return ResponseEntity.ok(userService.getAllUsers());
     }
 }
