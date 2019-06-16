@@ -58,13 +58,6 @@ public class PostService extends CrudService<Post> {
 
         List<Post> posts = postDao.getPostsFromSubscribedChannelsNew(userId, lastPostId);
         posts.addAll(postDao.getPostsFromSubscribedTagsNew(userId, lastPostId));
-//
-//        posts.sort((Post firstPost, Post secondPost) -> secondPost.getCreationDate().compareTo(firstPost.getCreationDate()));
-//
-//        for (int i = 0; i < posts.size(); i++) {
-//            posts.get(i).setContents(postContentDao.getPostsContents(posts.get(i).getId()));
-//            posts.get(i).setLikes(postDao.getPostLikes(posts.get(i).getId()));
-//        }
 
         return preparePostsForOutput(posts);
     }

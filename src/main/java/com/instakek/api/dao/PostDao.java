@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface PostDao extends GenericDao<Post> {
 
     List<Post> getPostsFromSubscribedChannels(long userId);
+
     List<Post> getPostsFromSubscribedTags(long userId);
 
     List<Post> getPostsFromSubscribedChannelsNew(long userId, long lastPostId);
