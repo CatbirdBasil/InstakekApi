@@ -124,12 +124,4 @@ public class ChannelService extends CrudService<Channel> {
 
         return channelDao.getChannelsContainingName(name);
     }
-
-    //TODONE 1) Subscribe and unsubcribe functions
-    //TODONE 2) Get channel with subscribers and subscriptions and posts
-    //TODONE ) Correct create post
-    //TODO 4) Place tag on post (oncreate and onupdate)
-    //TODO 5) Subscribe to and block tags
-    //TODON 6) Get subscribed posts
-    //TODON 7) Search for channel containing name
 }

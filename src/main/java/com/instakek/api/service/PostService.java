@@ -30,29 +30,64 @@ public class PostService extends CrudService<Post> {
         this.commentDao = commentDao;
     }
 
-    public Post getPostWithContents(long postId) {
+    /*public Post getPostForOutput(long postId) {
         Post post = super.getById(postId);
         post.setContents(postContentDao.getPostsContents(postId));
         return post;
-    }
+    }*/
 
     public Post getPostWithComments(long postId) {
+        log.debug("Getting post(id = {}) with comments", postId);
+
         Post post = super.getById(postId);
         post.setComments(commentDao.getPostComments(postId));
         return post;
     }
 
     public List<Post> getSubscribedPosts(long userId) {
+        log.debug("Getting subscribed posts for user(id = {})", userId);
+
         List<Post> posts = postDao.getPostsFromSubscribedChannels(userId);
         posts.addAll(postDao.getPostsFromSubscribedTags(userId));
 
-        posts.sort((Post firstPosr, Post secondPost) -> secondPost.getCreationDate().compareTo(firstPosr.getCreationDate()));
+        return preparePostsForOutput(posts);
+    }
+
+    public List<Post> getSubscribedPostsNew(long userId, long lastPostId) {
+        log.debug("Getting subscribed posts for user(id = {}) after post(id = {})", userId, lastPostId);
+
+        List<Post> posts = postDao.getPostsFromSubscribedChannelsNew(userId, lastPostId);
+        posts.addAll(postDao.getPostsFromSubscribedTagsNew(userId, lastPostId));
+//
+//        posts.sort((Post firstPost, Post secondPost) -> secondPost.getCreationDate().compareTo(firstPost.getCreationDate()));
+//
+//        for (int i = 0; i < posts.size(); i++) {
+//            posts.get(i).setContents(postContentDao.getPostsContents(posts.get(i).getId()));
+//            posts.get(i).setLikes(postDao.getPostLikes(posts.get(i).getId()));
+//        }
+
+        return preparePostsForOutput(posts);
+    }
+
+    private List<Post> preparePostsForOutput(List<Post> posts) {
+        posts.sort((Post firstPost, Post secondPost) -> secondPost.getCreationDate().compareTo(firstPost.getCreationDate()));
 
         for (int i = 0; i < posts.size(); i++) {
             posts.get(i).setContents(postContentDao.getPostsContents(posts.get(i).getId()));
+            posts.get(i).setLikes(postDao.getPostLikes(posts.get(i).getId()));
         }
 
         return posts;
+    }
+
+    public void addLike(long userId, long postId) {
+        log.debug("Setting like on post(id = {}) by user(id = {})", postId, userId);
+        postDao.setLike(postId, userId);
+    }
+
+    public void deleteLike(long userId, long postId) {
+        log.debug("Deleting like on post(id = {}) by user(id = {})", postId, userId);
+        postDao.deleteLike(postId, userId);
     }
 
     @Override

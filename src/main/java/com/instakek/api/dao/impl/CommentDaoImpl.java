@@ -2,6 +2,7 @@ package com.instakek.api.dao.impl;
 
 import com.instakek.api.dao.CommentDao;
 import com.instakek.api.mapper.CommentMapper;
+import com.instakek.api.mapper.CommentUserMapper;
 import com.instakek.api.model.Comment;
 import com.instakek.api.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
@@ -70,10 +71,8 @@ public class CommentDaoImpl extends GenericDaoImpl<Comment> implements CommentDa
         return new Object[]{entity.getPostId(), entity.getUserId(), entity.getText(), entity.getCommentTime()};
     }
 
-
-    // TODO REDO TO GET USER TOO
     @Override
     public List<Comment> getPostComments(long postId) {
-        return jdbcTemplate.query(sqlPostComments, new Object[]{postId}, rowMapper); // + another mapper
+        return jdbcTemplate.query(sqlPostComments, new Object[]{postId}, new CommentUserMapper());
     }
 }
