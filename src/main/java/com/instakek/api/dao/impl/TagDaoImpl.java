@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 import static com.instakek.api.utils.Constants.TableName;
@@ -40,6 +41,9 @@ public class TagDaoImpl extends GenericDaoImpl<Tag> implements TagDao {
 
     @Value("${db.query.tag.getTagByName}")
     private String sqlGetTagByName;
+
+    @Value("${db.query.tag.getTagContainingName}")
+    private String sqlGetTagContainingName;
 
     public TagDaoImpl() {
         super(new TagMapper(), TableName.TAG);
@@ -99,6 +103,11 @@ public class TagDaoImpl extends GenericDaoImpl<Tag> implements TagDao {
     @Override
     public Optional<Tag> getTagByText(String text) {
         return getSingleElement(jdbcTemplate.query(sqlGetTagByName, new Object[]{text}, rowMapper));
+    }
+
+    @Override
+    public List<Tag> findTagByText(String text) {
+        return jdbcTemplate.query(sqlGetTagContainingName, new Object[]{text}, rowMapper);
     }
 
 }

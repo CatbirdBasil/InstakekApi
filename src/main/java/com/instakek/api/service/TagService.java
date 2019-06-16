@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 @Slf4j
@@ -64,9 +66,15 @@ public class TagService extends CrudService<Tag> {
         return tagDao.getTagByText(text).isPresent();
     }
 
-    public void createUserTag(Long postId, Long tagId, Long userId) {
-// TODO ?????
+    public List<Tag> findTagByText(String text) {
+        log.debug("Finding tag by text: {}", text);
+
+        return tagDao.findTagByText(text);
     }
+
+//    public void createUserTag(Long postId, Long tagId, Long userId) {
+//// TODO ?????
+//    }
 
 
 }
