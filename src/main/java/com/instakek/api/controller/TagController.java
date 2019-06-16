@@ -123,7 +123,7 @@ public class TagController {
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 500, message = "Internal server error")
     })
-    @DeleteMapping("/post/{id}")
+    @DeleteMapping("/post/completeDelete/{id}")
     public ResponseEntity<?> removePostTagCompletely(@CurrentUser UserPrincipal user, @RequestBody long tagId,
                                                      @PathVariable long id) {
         log.debug("Removing tag(id = {}) from post(id = {})", tagId, id);
