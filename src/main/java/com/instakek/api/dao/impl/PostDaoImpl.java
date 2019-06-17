@@ -13,6 +13,9 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.sql.Types;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,11 +63,20 @@ public class PostDaoImpl extends GenericDaoImpl<Post> implements PostDao {
     @Override
     protected PreparedStatement prepareStatementForInsert(PreparedStatement statement, Post entity) throws SQLException {
 
+        Timestamp currTime = Timestamp.from(Instant.now());
+        entity.setCreationDate(currTime);
+
         int argNum = 1;
         statement.setLong(argNum++, entity.getChannelId());
         statement.setString(argNum++, entity.getText());
-        statement.setTimestamp(argNum++, entity.getCreationDate());
-        statement.setLong(argNum++, entity.getBasePostId());
+        statement.setTimestamp(argNum++, currTime);
+
+        Long basePostId = entity.getBasePostId();
+        if (basePostId == null) {
+            statement.setNull(argNum++, Types.NULL);
+        } else {
+            statement.setLong(argNum++, basePostId);
+        }
 
         return statement;
     }

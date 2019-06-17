@@ -132,7 +132,7 @@ public abstract class GenericDaoImpl<T extends Identified> implements GenericDao
             }, keyHolder);
         } catch (DataAccessException ex) {
             log.error("Error occurred while inserting entity in {}: {}", this.getClass().getName(), entity);
-            throw new AppException("Error occurred while inserting");
+            throw new AppException("Error occurred while inserting: ", ex);
         }
 
         entity.setId(keyHolder.getKey().longValue());
