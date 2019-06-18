@@ -5,6 +5,7 @@ import com.instakek.api.model.Post;
 import com.instakek.api.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ChannelDao extends GenericDao<Channel> {
 
@@ -21,4 +22,6 @@ public interface ChannelDao extends GenericDao<Channel> {
     List<User> getChannelSubscribers(Long channelId);
 
     List<Channel> getChannelsContainingName(String name);
+
+    Optional<Channel> getBaseChannelByUserId(Long userId);
 }

@@ -2,6 +2,7 @@ package com.instakek.api.service;
 
 import com.instakek.api.dao.UserDao;
 import com.instakek.api.exception.AppException;
+import com.instakek.api.model.Channel;
 import com.instakek.api.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -100,5 +101,15 @@ public class UserService {
 
     public String getNewPassword() {
         return RandomStringUtils.random(15, ALL_PASSWORD_CHARACTERS);
+    }
+
+    public List<User> getSubscribersByUserId(Long userId) {
+        log.debug("Getting (user = {}) subscribers", userId);
+        return userDao.getSubscribersByUserId(userId);
+    }
+
+    public List<Channel> getSubscriptionsByUserId(Long userId) {
+        log.debug("Getting (user = {}) subscriptions", userId);
+        return userDao.getSubscriptionsByUserId(userId);
     }
 }

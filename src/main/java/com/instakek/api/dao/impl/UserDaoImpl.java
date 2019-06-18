@@ -1,7 +1,9 @@
 package com.instakek.api.dao.impl;
 
 import com.instakek.api.dao.UserDao;
+import com.instakek.api.mapper.ChannelMapper;
 import com.instakek.api.mapper.UserMapper;
+import com.instakek.api.model.Channel;
 import com.instakek.api.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,6 +36,11 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
     @Value("${db.query.user.getByUsernameOrEmail}")
     private String sqlGetUserByUsernameOrEmail;
 
+    @Value("${db.query.user.getSubscribersByUserId}")
+    private String sqlGetSubscribersByUserId;
+
+    @Value("${db.query.user.getSubscriptionsByUserId}")
+    private String sqlGetSubscriptionsByUserId;
 
     public UserDaoImpl() {
         super(new UserMapper(), TableName.USER);
@@ -89,5 +96,15 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
     @Override
     public boolean existsByEmail(String email) {
         return !(jdbcTemplate.query(sqlGetUserByEmail, new Object[]{email}, rowMapper)).isEmpty();
+    }
+
+    @Override
+    public List<User> getSubscribersByUserId(Long userId) {
+        return jdbcTemplate.query(sqlGetSubscribersByUserId, new Object[]{userId}, rowMapper);
+    }
+
+    @Override
+    public List<Channel> getSubscriptionsByUserId(Long userId) {
+        return jdbcTemplate.query(sqlGetSubscriptionsByUserId, new Object[]{userId}, new ChannelMapper());
     }
 }

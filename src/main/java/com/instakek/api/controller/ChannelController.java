@@ -149,5 +149,17 @@ public class ChannelController {
 
         return ResponseEntity.ok(channelService.getChannelsContainingName(text));
     }
+
+    @ApiOperation(value = "getChannelsContainingName",
+            notes = "Returns base channel of user")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK")
+    })
+    @GetMapping("/base/{id}")
+    public ResponseEntity<?> getBaseChannelByUserId(@PathVariable Long id) {
+        log.debug("Requesting base channel of user(id = {})", id);
+
+        return ResponseEntity.ok(channelService.getBaseChannelByUserId(id));
+    }
 }
 

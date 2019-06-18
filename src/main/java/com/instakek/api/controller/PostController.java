@@ -151,5 +151,17 @@ public class PostController {
         return ResponseEntity.ok(postService.getPostWithComments(id));
     }
 
+    @ApiOperation(value = "getPostsFromUserBaseChannel",
+            notes = "Returns a list of posts from users base channel")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK")
+    })
+    @GetMapping("/base/{id}")
+    public ResponseEntity<?> getPostsFromUserBaseChannel(@PathVariable long id) {
+        log.debug("Requesting posts from user(id = {}) base channel", id);
+
+        return ResponseEntity.ok(postService.getPostsByUserBaseChannel(id));
+    }
+
 }
 

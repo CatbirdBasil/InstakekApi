@@ -37,19 +37,27 @@ public class PostDaoImpl extends GenericDaoImpl<Post> implements PostDao {
     @Value("${db.query.post.getPostsFromSubscribedTags}")
     private String sqlGetPostsFromSubscribedTags;
 
-    private static RowMapper<Post> postChannelRowMapper = new PostChannelMapper();
     @Value("${db.query.post.getPostsFromSubscribedChannelsNew}")
     private String sqlGetPostsFromSubscribedChannelsNew;
+
     @Value("${db.query.post.getPostsFromSubscribedTagsNew}")
     private String sqlGetPostsFromSubscribedTagsNew;
+
     @Value("${db.query.post.getPostWithChannel}")
     private String sqlGetPostByIdWithChannel;
+
     @Value("${db.query.post.getPostLikes}")
     private String sqlGetPostLikes;
+
     @Value("${db.query.post.addLike}")
     private String sqlAddLike;
+
     @Value("${db.query.post.deleteLike}")
     private String sqlDeleteLike;
+
+    private static RowMapper<Post> postChannelRowMapper = new PostChannelMapper();
+    @Value("${db.query.post.getPostsFromUserBaseChannel}")
+    private String sqlGetPostsFromUserBaseChannel;
 
     public PostDaoImpl() {
         super(new PostMapper(), TableName.POST);
@@ -131,5 +139,10 @@ public class PostDaoImpl extends GenericDaoImpl<Post> implements PostDao {
     @Override
     public void deleteLike(long postId, long userId) {
         jdbcTemplate.update(sqlDeleteLike, userId, postId);
+    }
+
+    @Override
+    public List<Post> getPostsFromUserBaseChannel(long userId) {
+        return jdbcTemplate.query(sqlGetPostsFromUserBaseChannel, new Object[]{userId}, postChannelRowMapper);
     }
 }

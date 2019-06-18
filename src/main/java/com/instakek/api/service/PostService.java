@@ -62,7 +62,7 @@ public class PostService extends CrudService<Post> {
         return preparePostsForOutput(posts);
     }
 
-    private List<Post> preparePostsForOutput(List<Post> posts) {
+    public List<Post> preparePostsForOutput(List<Post> posts) {
         posts.sort((Post firstPost, Post secondPost) -> secondPost.getCreationDate().compareTo(firstPost.getCreationDate()));
 
         for (int i = 0; i < posts.size(); i++) {
@@ -71,6 +71,11 @@ public class PostService extends CrudService<Post> {
         }
 
         return posts;
+    }
+
+    public List<Post> getPostsByUserBaseChannel(long userId) {
+        log.debug("Getting posts for user(id = {}) base channel", userId);
+        return postDao.getPostsFromUserBaseChannel(userId);
     }
 
     public void addLike(long userId, long postId) {

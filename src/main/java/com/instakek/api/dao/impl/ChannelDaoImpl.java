@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
+import java.util.Optional;
 
 import static com.instakek.api.utils.Constants.TableName;
 
@@ -48,6 +49,9 @@ public class ChannelDaoImpl extends GenericDaoImpl<Channel> implements ChannelDa
 
     @Value("${db.query.channel.getChannelsContainingName}")
     private String sqlChannelsContainingName;
+
+    @Value("${db.query.channel.getUserBaseChannel}")
+    private String sqlGetUserBaseChannel;
 
     public ChannelDaoImpl() {
         super(new ChannelMapper(), TableName.CHANNEL);
@@ -128,5 +132,10 @@ public class ChannelDaoImpl extends GenericDaoImpl<Channel> implements ChannelDa
     @Override
     public List<Channel> getChannelsContainingName(String name) {
         return jdbcTemplate.query(sqlChannelsContainingName, new Object[]{name}, rowMapper);
+    }
+
+    @Override
+    public Optional<Channel> getBaseChannelByUserId(Long userId) {
+        return getSingleElement(jdbcTemplate.query(sqlGetUserBaseChannel, new Object[]{userId}, new ChannelMapper()));
     }
 }

@@ -24,4 +24,5 @@ public interface PostDao extends GenericDao<Post> {
 
     void deleteLike(long postId, long userId);
 
+    List<Post> getPostsFromUserBaseChannel(long userId);
 }

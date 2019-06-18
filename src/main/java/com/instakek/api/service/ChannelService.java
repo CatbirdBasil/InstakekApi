@@ -2,6 +2,7 @@ package com.instakek.api.service;
 
 import com.instakek.api.dao.ChannelDao;
 import com.instakek.api.enums.ChannelType;
+import com.instakek.api.exception.AppException;
 import com.instakek.api.model.Channel;
 import com.instakek.api.model.Post;
 import com.instakek.api.model.PostContent;
@@ -19,54 +20,16 @@ import java.util.List;
 public class ChannelService extends CrudService<Channel> {
 
     private ChannelDao channelDao;
+    private PostService postService;
     private PostContentService postContentService;
 
     @Autowired
-    public ChannelService(ChannelDao channelDao, PostContentService postContentService) {
+    public ChannelService(ChannelDao channelDao, PostService postService, PostContentService postContentService) {
         super(channelDao, "Channel");
         this.channelDao = channelDao;
+        this.postService = postService;
         this.postContentService = postContentService;
     }
-
-    /*public Channel getChannelById(Long id) {
-        log.debug("Getting channel");
-
-        return channelDao.getById(id)
-                .orElseThrow(() -> {
-                    log.error("Channel not found with id: {}", id);
-                    return new AppException("Channel with id " + id + " not found");
-                });
-    }
-
-    public List<Channel> getAllChannels() {
-        log.debug("Getting channels");
-
-        return channelDao.getAll();
-    }
-
-    public void deleteChannelById(long id) {
-        log.debug("Deleting channel");
-
-        channelDao.deleteById(id);
-    }
-
-    public void deleteChannel(Channel channel) {
-        log.debug("Deleting channel");
-
-        channelDao.delete(channel);
-    }
-
-    public void updateChannel(Channel channel) {
-        log.debug("Updating channel");
-
-        channelDao.update(channel);
-    }
-
-    public Channel createChannel(Channel channel) {
-        log.debug("Creating channel");
-
-        return channelDao.insert(channel);
-    }*/
 
     public Channel createUserBaseChannel(User user) {
         log.debug("Creating user base channel for user (id = " + user.getId() + ")");
@@ -123,5 +86,18 @@ public class ChannelService extends CrudService<Channel> {
         log.debug("Getting channels containing name = {}", name);
 
         return channelDao.getChannelsContainingName(name);
+    }
+
+    public Channel getBaseChannelByUserId(Long userId) {
+        Channel channel = channelDao.getBaseChannelByUserId(userId).orElseThrow(() -> {
+            log.error("Channel not found for user with id: {}", userId);
+            return new AppException("Channel not found for user with id = " + userId + " not found");
+        });
+
+        List<Post> posts = postService.getPostsByUserBaseChannel(userId);
+        posts = postService.preparePostsForOutput(posts);
+
+        channel.setPosts(posts);
+        return channel;
     }
 }
